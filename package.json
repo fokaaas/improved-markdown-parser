@@ -1,0 +1,19 @@
+{
+  "name": "md-to-html-parser",
+  "version": "1.0.0",
+  "description": "A simple markdown to html parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "markdown",
+    "html",
+    "parser"
+  ],
+  "author": "Stanislav Basarab",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
