@@ -4,7 +4,14 @@
   "description": "A simple markdown to html parser",
   "main": "index.js",
   "scripts": {
-    "parse": "pnpm tsc && node dist/index.js"
+    "parse": "pnpm tsc && node dist/index.js",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint"
   },
   "keywords": [
     "markdown",
@@ -14,10 +21,11 @@
   "author": "Stanislav Basarab",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.3.3"
+    "gts": "^5.2.0",
+    "typescript": "~5.2.0",
+    "@types/node": "20.11.23"
   },
   "dependencies": {
-    "@types/node": "^20.11.23",
     "commander": "^12.0.0"
   }
 }
