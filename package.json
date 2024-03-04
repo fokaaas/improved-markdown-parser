@@ -4,7 +4,7 @@
   "description": "A simple markdown to html parser",
   "main": "index.js",
   "scripts": {
-    "parse": "pnpm tsc && node dist/index.js",
+    "parse": "pnpm tsc && node build/src/index.js",
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc",
