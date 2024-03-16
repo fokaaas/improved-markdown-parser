@@ -1,4 +1,5 @@
 export class CaseDto {
   pattern: RegExp;
-  replacement: string;
+  html: string;
+  escape: string;
 }
