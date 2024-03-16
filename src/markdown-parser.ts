@@ -3,6 +3,7 @@ import {MarkdownParserInterface} from './interfaces/markdown-parser.interface';
 import {MarkdownValidator} from './markdown-validator';
 import {CaseDto} from './dto/case.dto';
 import {dirname} from 'path';
+import * as os from 'os';
 
 const markdownValidator = new MarkdownValidator();
 
@@ -28,6 +29,8 @@ export class MarkdownParser implements MarkdownParserInterface {
   ];
 
   private preformattedText: string[] = [];
+
+  private separator = `${os.EOL}${os.EOL}`;
 
   parse() {
     const file = this.readFile();
@@ -64,7 +67,9 @@ export class MarkdownParser implements MarkdownParserInterface {
   }
 
   private setParagraphs(text: string): string {
-    return text.split('\n\n').reduce((acc, cur) => `${acc}\n<p>${cur}</p>`, '');
+    return text
+      .split(this.separator)
+      .reduce((acc, cur) => `${acc}\n<p>${cur}</p>`, '');
   }
 
   private readFile(): string {
