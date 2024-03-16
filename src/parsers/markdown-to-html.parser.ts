@@ -1,7 +1,6 @@
 import { MarkdownValidator } from '../validators/markdown-validator';
-import { CaseDto } from '../dto/case.dto';
-import * as os from 'os';
 import { MarkdownParser } from './markdown.parser';
+import * as os from 'os';
 
 const markdownValidator = new MarkdownValidator();
 
@@ -10,24 +9,7 @@ export class MarkdownToHtmlParser extends MarkdownParser {
     super(path, out);
   }
 
-  private readonly cases: CaseDto[] = [
-    {
-      pattern: /(?<=[ ,.:;\n\t]|^)\*\*(?=\S)(.+?)(?<=\S)\*\*(?=[ ,.:;\n\t]|$)/g,
-      replacement: '<b>$1</b>',
-    },
-    {
-      pattern: /(?<=[ ,.:;\n\t]|^)_(?=\S)(.+?)(?<=\S)_(?=[ ,.:;\n\t]|$)/g,
-      replacement: '<i>$1</i>',
-    },
-    {
-      pattern: /(?<=[ ,.:;\n\t]|^)`(?=\S)(.+?)(?=\S)`(?=[ ,.:;\n\t]|$)/g,
-      replacement: '<tt>$1</tt>',
-    },
-  ];
-
-  private preformattedText: string[] = [];
-
-  private separator = `${os.EOL}${os.EOL}`;
+  private readonly separator = `${os.EOL}${os.EOL}`;
 
   parse() {
     const file = this.readMarkdown();
@@ -35,7 +17,7 @@ export class MarkdownToHtmlParser extends MarkdownParser {
 
     markdownValidator.checkNesting(formattedText, this.cases);
     const html = this.cases.reduce((acc, cur) => {
-      return acc.replace(cur.pattern, cur.replacement);
+      return acc.replace(cur.pattern, cur.html);
     }, formattedText);
 
     const htmlWithParagraphs = this.setParagraphs(html);
@@ -43,17 +25,6 @@ export class MarkdownToHtmlParser extends MarkdownParser {
 
     const result = this.setPreformattedText(htmlWithParagraphs);
     this.out ? this.writeResult(result) : console.log(result);
-  }
-
-  private removePreformattedText(text: string): string {
-    const preformattedText = text.match(/```([\s\S]*?)```/g);
-    if (!preformattedText) return text;
-
-    this.preformattedText.push(...preformattedText);
-    return preformattedText.reduce(
-      (acc, cur, index) => acc.replace(cur, `PRE{{${index}}}PRE`),
-      text
-    );
   }
 
   private setPreformattedText(text: string): string {
