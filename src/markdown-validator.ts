@@ -1,4 +1,4 @@
-import {CaseDto} from './dto/case.dto';
+import { CaseDto } from './dto/case.dto';
 
 export class MarkdownValidator {
   private readonly markupParts: RegExp[] = [
@@ -12,7 +12,7 @@ export class MarkdownValidator {
 
   private getMarkupParts(target: string, cases: CaseDto[]) {
     const parts = [];
-    for (const {pattern} of cases) {
+    for (const { pattern } of cases) {
       const matches = target.match(pattern);
       if (matches) {
         parts.push(...matches.map(match => match.replace(pattern, '$1')));
@@ -24,7 +24,7 @@ export class MarkdownValidator {
   checkNesting(target: string, cases: CaseDto[]) {
     const parts = this.getMarkupParts(target, cases);
     for (const part of parts) {
-      cases.map(({pattern}) => {
+      cases.map(({ pattern }) => {
         const matches = part.match(pattern);
         if (matches) throw new Error('invalid markdown (nested markup)');
       });

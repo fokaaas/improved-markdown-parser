@@ -1,5 +1,5 @@
-import {Command} from 'commander';
-import {MarkdownParser} from './markdown-parser';
+import { Command } from 'commander';
+import { MarkdownParser } from './markdown-parser';
 
 const program = new Command();
 

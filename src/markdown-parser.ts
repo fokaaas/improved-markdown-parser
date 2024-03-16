@@ -1,8 +1,8 @@
 import * as fs from 'fs';
-import {MarkdownParserInterface} from './interfaces/markdown-parser.interface';
-import {MarkdownValidator} from './markdown-validator';
-import {CaseDto} from './dto/case.dto';
-import {dirname} from 'path';
+import { MarkdownParserInterface } from './interfaces/markdown-parser.interface';
+import { MarkdownValidator } from './markdown-validator';
+import { CaseDto } from './dto/case.dto';
+import { dirname } from 'path';
 import * as os from 'os';
 
 const markdownValidator = new MarkdownValidator();
