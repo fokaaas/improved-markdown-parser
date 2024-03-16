@@ -10,7 +10,7 @@ const parsers: any = {
 };
 
 program
-  .name('MD to HTML parser')
+  .name('Markdown Parser')
   .description('Converts a markdown file to HTML')
   .version('0.0.1', '-v, --version', 'output the current version')
   .argument('<path>', 'path to markdown file')

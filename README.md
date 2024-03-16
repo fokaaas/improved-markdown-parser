@@ -1,6 +1,6 @@
 # Markdown Parser
 
-This console application allows you to parse markdown into html.
+This console application allows you to parse markdown into html & escape codes.
 
 The result can be displayed in the console or saved to a file.
 
@@ -14,7 +14,7 @@ The result can be displayed in the console or saved to a file.
 Firstly, clone this repo:
 
 ```bash
-git clone https://github.com/fokaaas/markdown-parser.git
+git clone https://github.com/fokaaas/improved-markdown-parser.git
 ```
 
 Then install **pnpm** globally:
@@ -32,7 +32,7 @@ pnpm install
 Run application:
 
 ```bash
-pnpm parse <path> -o <path>
+pnpm parse <path> --out <path> --format <type>
 ```
 
 Explore all commands:
@@ -42,20 +42,21 @@ pnpm parse --help
 ```
 
 ```bash
-Usage: MD to HTML parser [options] <path>
+Usage: Markdown Parser [options] <path>     
 
 Converts a markdown file to HTML
 
 Arguments:
-  path              path to markdown file
+  path                 path to markdown file
 
 Options:
-  -v, --version     output the current version
-  -o, --out <path>  path to html file
-  -h, --help        display help for command
+  -v, --version        output the current version
+  -o, --out <path>     path to html file
+  -f, --format <type>  output format (choices: "html", "escape")
+  -h, --help           display help for command
 ```
 
-## Example
+## Examples
 
 Lets parse churka-example.md file and save result to churka-example.html:
 
@@ -76,7 +77,7 @@ Lets parse churka-example.md file and save result to churka-example.html:
 Parse it:
 
 ```bash
-pnpm parse churka-example.md -o churka-example.html
+pnpm parse churka-example.md --out churka-example.html
 ```
 
 churka-example.html:
@@ -92,6 +93,25 @@ churka-example.html:
 </p>
 ```
 
+Then, lets parse churka-example.md file into escape codes:
+
+```bash
+pnpm parse churka-example.md --out churka-example.txt --format escape
+```
+
+churka-example.txt:
+
+```
+Їде [7mчурка[27m по дорозі. Зупиняється і [1mба_чить[22m: [3mкрисак на дорозі лежить[23m. Великий такий, правда дохлий.
+Ну і вирішив він його забрати із собою. Взяв на руки, [3mвідкрив багажник[23m. І положив туди крисака зі словами "Прігодіться!".
+
+На наступний [1mдень[22m їде чурка [3mтією самою[23m дорогою. Зупиняється.
+[7m
+Відкриває `багажник, дістає звідти крисака`, кладе його на те
+ж саме місце. І `говорить`: "Нє прігоділся!"
+[27m
+```
+
 ## Revert Commit
 
-[Link](https://github.com/fokaaas/markdown-parser/commit/583d2de561e477b049711f8b901ca9fbfe9747cf)
+[Link](https://github.com/fokaaas/improved-markdown-parser/commit/de63ed97fa3a5908788de5147e221631e32de893)
