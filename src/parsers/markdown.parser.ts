@@ -3,7 +3,7 @@ import { dirname } from 'path';
 import { CaseDto } from '../dto/case.dto';
 
 export class MarkdownParser {
-  protected constructor(
+  constructor(
     private readonly path: string,
     protected readonly out?: string
   ) {}
