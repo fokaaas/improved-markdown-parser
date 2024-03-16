@@ -1,17 +1,14 @@
-import * as fs from 'fs';
-import { MarkdownParserInterface } from './interfaces/markdown-parser.interface';
-import { MarkdownValidator } from './markdown-validator';
-import { CaseDto } from './dto/case.dto';
-import { dirname } from 'path';
+import { MarkdownValidator } from '../validators/markdown-validator';
+import { CaseDto } from '../dto/case.dto';
 import * as os from 'os';
+import { MarkdownParser } from './markdown.parser';
 
 const markdownValidator = new MarkdownValidator();
 
-export class MarkdownParser implements MarkdownParserInterface {
-  constructor(
-    private readonly path: string,
-    private readonly out?: string
-  ) {}
+export class MarkdownToHtmlParser extends MarkdownParser {
+  constructor(path: string, out?: string) {
+    super(path, out);
+  }
 
   private readonly cases: CaseDto[] = [
     {
@@ -33,7 +30,7 @@ export class MarkdownParser implements MarkdownParserInterface {
   private separator = `${os.EOL}${os.EOL}`;
 
   parse() {
-    const file = this.readFile();
+    const file = this.readMarkdown();
     const formattedText = this.removePreformattedText(file);
 
     markdownValidator.checkNesting(formattedText, this.cases);
@@ -45,7 +42,7 @@ export class MarkdownParser implements MarkdownParserInterface {
     markdownValidator.checkUnpairedMarkup(htmlWithParagraphs);
 
     const result = this.setPreformattedText(htmlWithParagraphs);
-    this.out ? this.writeFile(result) : console.log(result);
+    this.out ? this.writeResult(result) : console.log(result);
   }
 
   private removePreformattedText(text: string): string {
@@ -70,18 +67,5 @@ export class MarkdownParser implements MarkdownParserInterface {
     return text
       .split(this.separator)
       .reduce((acc, cur) => `${acc}\n<p>${cur}</p>`, '');
-  }
-
-  private readFile(): string {
-    const isExists = fs.existsSync(this.path);
-    if (!isExists) throw new Error('file not found');
-    return fs.readFileSync(this.path, 'utf-8');
-  }
-
-  private writeFile(text: string) {
-    const path = dirname(this.out);
-    const isExists = fs.existsSync(path);
-    if (!isExists) throw new Error('out is not correct');
-    fs.writeFileSync(this.out, text);
   }
 }

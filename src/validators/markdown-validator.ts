@@ -1,4 +1,4 @@
-import { CaseDto } from './dto/case.dto';
+import { CaseDto } from '../dto/case.dto';
 
 export class MarkdownValidator {
   private readonly markupParts: RegExp[] = [

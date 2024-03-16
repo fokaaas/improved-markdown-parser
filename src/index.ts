@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { MarkdownParser } from './markdown-parser';
+import { MarkdownToHtmlParser } from './parsers/markdown-to-html.parser';
 
 const program = new Command();
 
@@ -12,5 +12,5 @@ program
   .parse();
 
 const options = program.opts();
-const parser = new MarkdownParser(program.args[0], options.out);
+const parser = new MarkdownToHtmlParser(program.args[0], options.out);
 parser.parse();
