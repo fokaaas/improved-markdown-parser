@@ -30,7 +30,7 @@ export class MarkdownToHtmlParser extends MarkdownParser {
   private setPreformattedText(text: string): string {
     return this.preformattedText.reduce((acc, cur, index) => {
       const html = `<pre>${cur.replace(/```/g, '')}</pre>`;
-      return acc.replace(`PRE{${index}}PRE`, html);
+      return acc.replace(`PRE{{${index}}}PRE`, html);
     }, text);
   }
 
