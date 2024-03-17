@@ -1,0 +1,12 @@
+name: ESLint
+on: [ push, pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+      - name: 'Set up Node.js and dependencies'
+        uses: ./.github/actions/set-up
+      - name: 'Lint'
+        run: pnpm lint

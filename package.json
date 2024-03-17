@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "parse": "pnpm tsc && node build/src/index.js",
+    "build": "pnpm tsc",
     "lint": "gts lint",
     "clean": "gts clean",
     "test": "jest",
