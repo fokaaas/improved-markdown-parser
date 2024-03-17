@@ -32,7 +32,7 @@ describe('MarkdownToEscapeParser', () => {
     });
   });
 
-  describe('setPreformattedText', () => {
+  describe('setInverseMode', () => {
     const markdownToEscapeParser = new MarkdownToEscapeParser('path');
 
     it('should correctly replace preformatted text with escape characters', () => {
@@ -40,7 +40,7 @@ describe('MarkdownToEscapeParser', () => {
         value: ['```bla bla _text_```', '```text```'],
       });
 
-      const result = markdownToEscapeParser['setPreformattedText'](
+      const result = markdownToEscapeParser['setInverseMode'](
         'Some PRE{{0}}PRE with PRE{{1}}PRE'
       );
 
@@ -54,7 +54,7 @@ describe('MarkdownToEscapeParser', () => {
         value: ['```bla bla _text_```', '```text```'],
       });
 
-      const result = markdownToEscapeParser['setPreformattedText'](
+      const result = markdownToEscapeParser['setInverseMode'](
         'Some PRE{{0}}PRE with PRE{{1}}PRE and PRE{{2}}PRE'
       );
 
@@ -64,12 +64,12 @@ describe('MarkdownToEscapeParser', () => {
     });
 
     it('should return the same string if there is no preformatted text', () => {
-      const result = markdownToEscapeParser['setPreformattedText']('Some text');
+      const result = markdownToEscapeParser['setInverseMode']('Some text');
       expect(result).toBe('Some text');
     });
 
     it('should return empty string if input is empty', () => {
-      const result = markdownToEscapeParser['setPreformattedText']('');
+      const result = markdownToEscapeParser['setInverseMode']('');
       expect(result).toBe('');
     });
   });

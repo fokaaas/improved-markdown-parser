@@ -18,11 +18,11 @@ export class MarkdownToEscapeParser extends MarkdownParser {
     }, formattedText);
 
     markdownValidator.checkUnpairedMarkup(escape);
-    const result = this.setPreformattedText(escape);
+    const result = this.setInverseMode(escape);
     this.out ? this.writeResult(result) : console.log(result);
   }
 
-  private setPreformattedText(text: string): string {
+  private setInverseMode(text: string): string {
     return this.preformattedText.reduce((acc, cur, index) => {
       const escape = `\x1b[7m${cur.replace(/```/g, '')}\x1b[27m`;
       return acc.replace(`PRE{{${index}}}PRE`, escape);
