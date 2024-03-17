@@ -1,4 +1,4 @@
-import { MarkdownValidator } from '../validators/markdown-validator';
+import { MarkdownValidator } from '../validators/markdown.validator';
 import { MarkdownParser } from './markdown.parser';
 import * as os from 'os';
 

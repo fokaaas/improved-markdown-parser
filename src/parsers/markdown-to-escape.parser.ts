@@ -1,5 +1,5 @@
 import { MarkdownParser } from './markdown.parser';
-import { MarkdownValidator } from '../validators/markdown-validator';
+import { MarkdownValidator } from '../validators/markdown.validator';
 
 const markdownValidator = new MarkdownValidator();
 
