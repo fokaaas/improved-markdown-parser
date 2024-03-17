@@ -112,6 +112,40 @@ churka-example.txt:
 [27m
 ```
 
+## Unit Tests
+
+32 unit tests are available for this application.
+
+Run them:
+
+```bash
+pnpm test
+```
+
+And you will see some message like this:
+
+```bash
+Test Suites: 4 passed, 4 total
+Tests:       32 passed, 32 total
+Snapshots:   0 total
+Time:        3.692 s, estimated 4 s
+Ran all test suites.
+```
+
 ## Revert Commit
 
-[Link](https://github.com/fokaaas/improved-markdown-parser/commit/de63ed97fa3a5908788de5147e221631e32de893)
+[Commit](https://github.com/fokaaas/improved-markdown-parser/commit/de63ed97fa3a5908788de5147e221631e32de893)
+
+## Commit with failed actions
+There are 3 actions available for this project: Build, Lint, Test.
+
+[Commit](https://github.com/fokaaas/improved-markdown-parser/commit/7c5abec2952658e46ac1e84623e73c754bee058c)
+
+## Conclusion
+
+I have experience with writing unit tests on various projects, in particular at my work 
+and on the [FICE Advisor](https://github.com/fictadvisor/fictadvisor) project. They helped me personally when refactoring the code. 
+They guarantee that after refactoring, the functionality will remain the same 
+and nothing will break.  Also, tests encourage adherence to architectural rules when writing code.  
+And it is also very convenient to study the functionality you do not know, precisely 
+from the written unit tests.
